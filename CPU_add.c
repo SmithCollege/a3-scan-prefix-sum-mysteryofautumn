@@ -1,36 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
-#define SIZE 128
+#define SIZE 10000
 
-int main() {
-  // allocate memory
-  int* input = malloc(sizeof(int) * SIZE);
-  int* output = malloc(sizeof(int) * SIZE);
+double get_clock() {
+    //return local time 
+    struct timeval tv; 
+    int ok;
+    ok = gettimeofday(&tv, (void *) 0);
+    if (ok<0) { printf("get time ofday error"); }
+    return (tv.tv_sec * 1.0 + tv.tv_usec * 1.0E-6);
+}
 
-  // initialize inputs
-  for (int i = 0; i < SIZE; i++) {
-    input[i] = 1;
-   }
+int main(){
+  
+    // allocate memory
+    int* input = malloc(sizeof(int) * SIZE);
+    int* output = malloc(sizeof(int) * SIZE);
 
-  // do the scan
-  for (int i = 0; i < SIZE; i++) {
-   int value = 0;
-   for (int j = 0; j <= i; j++) {
-     value += input[j];
-   }
-    output[i] = value;
-  }
+    // array initialization
+    for(int i=0; i< SIZE; i++){
+        input[i] = 1;
+    }
 
-  // check results
-  for (int i = 0; i < SIZE; i++) {
-    printf("%d ", output[i]);
-  }
-  printf("\n");
+    // start timer
+    double t0 = get_clock();
 
-  // free mem
-  free(input);
-  free(output);
+    // addition
+    output[0] = input[0];
+    for(int i=1; i< SIZE; i++){
+        output[i] = input[i] + output[i-1];
+    }
 
-  return 0;
+    // stop timer
+    double t1 = get_clock();
+
+    // result
+    printf("%d\n", output[SIZE -1 ]);
+    printf("time per call: %f ns\n", (1000000000.0*(t1-t0)/SIZE) );
+
+    return 0;
 }
