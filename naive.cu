@@ -55,7 +55,7 @@ int main(void)
 
     // result
     printf("%d\n", out[N - 1]);
-    printf("time per call: %f ns\n", (1000000000.0 * (t1 - t0) / N));
+    printf("time: %f ns\n", (1000000000.0 * (t1 - t0)));
 
     // Free memory
     cudaFree(in);

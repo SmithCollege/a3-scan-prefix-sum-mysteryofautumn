@@ -4,7 +4,7 @@
 #include <sys/time.h>
 
 #define BLOCK_SIZE 256
-#define N 100
+#define N 1
 
 double get_clock() {
     struct timeval tv; 
@@ -60,7 +60,7 @@ int main(void)
     // stop timer
     double t1 = get_clock();
     printf("%d\n", in[N-1]);
-    printf("time per call: %f ns\n", (1000000000.0 * (t1 - t0) / N));
+    printf("time: %f ns\n", (1000000000.0 * (t1 - t0)));
 
     // Free memory
     cudaFree(in);

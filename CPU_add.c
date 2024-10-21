@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#define SIZE 10000
+#define SIZE 1000000
 
 double get_clock() {
     //return local time 
@@ -32,13 +32,13 @@ int main(){
     for(int i=1; i< SIZE; i++){
         output[i] = input[i] + output[i-1];
     }
-
+    
     // stop timer
     double t1 = get_clock();
 
     // result
     printf("%d\n", output[SIZE -1 ]);
-    printf("time per call: %f ns\n", (1000000000.0*(t1-t0)/SIZE) );
+    printf("time: %f ns\n", (1000000000.0*(t1-t0)) );
 
     return 0;
 }

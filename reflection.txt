@@ -1,0 +1,11 @@
+What went well with this assignment?
+The  collected result is expected base on run time complexity
+
+What was difficult?
+Understanding how to adapt double recursive function without shared memory
+
+How would you approach it differently?
+I think I might approach the algorithm without shared memory in mind in the first place
+
+Anything else you want me to know?
+Nope.
